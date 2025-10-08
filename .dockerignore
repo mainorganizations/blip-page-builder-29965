@@ -1,0 +1,9 @@
+# Build and push to Google Container Registry
+gcloud builds submit --tag gcr.io/blip-page-builder-29965/document-card
+
+# Deploy to Cloud Run
+gcloud run deploy document-card \
+  --image gcr.io/blip-page-builder-29965/document-card \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated
