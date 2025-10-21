@@ -196,8 +196,8 @@
 
             <!-- Additional Info -->
             <div class="footer-info">
-                <p class="footer-text">
-                    Document expires in 7 days
+                <p class="footer-text" id="countdown">
+                    Redirecting in <span id="timer">5</span> seconds...
                 </p>
             </div>
         </div>
@@ -210,6 +210,20 @@
         function openDocument() {
             window.open(redirectUrl, '_blank');
         }
+
+        // Auto redirect timer
+        let timeLeft = 5;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(function() {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
 
         // Add hover effects
         document.addEventListener('DOMContentLoaded', function() {
